@@ -7,6 +7,7 @@ mpFaceMesh = mp.solutions.face_mesh
 faceMesh = mpFaceMesh.FaceMesh()
 
 mpDraw = mp.solutions.drawing_utils
+drawSpec = mpDraw.DrawingSpec(thickness = 2, circle_radius = 2)
 
 while True:
     _, img = cap.read()
@@ -17,7 +18,7 @@ while True:
     if results.multi_face_landmarks:
         print(results.multi_face_landmarks)
         for landmark in results.multi_face_landmarks:
-            mpDraw.draw_landmarks(img, landmark, mpFaceMesh.FACE_CONNECTIONS)
+            mpDraw.draw_landmarks(img, landmark, mpFaceMesh.FACE_CONNECTIONS, drawSpec, drawSpec)
 
     cv2.flip(img, 1)
     cv2.imshow("Face Mesh", img)
