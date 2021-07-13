@@ -14,6 +14,11 @@ while True:
     imgRGB = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
     results = faceMesh.process(imgRGB)
 
+    if results.multi_face_landmarks:
+        print(results.multi_face_landmarks)
+        for landmark in results.multi_face_landmarks:
+            mpDraw.draw_landmarks(img, landmark, mpFaceMesh.FACE_CONNECTIONS)
+
     cv2.flip(img, 1)
     cv2.imshow("Face Mesh", img)
 
